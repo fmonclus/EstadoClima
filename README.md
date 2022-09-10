@@ -1,6 +1,12 @@
-# EstadoClima
+# Estado del Clima
 
-This template should help get you started developing with Vue 3 in Vite.
+Esta es una aplicacion para poner en practicas conceptos de Vue.JS
+
+Utilizando la API de weatherDB
+
+Documentacion API Clima: (https://weatherdbi.herokuapp.com/documentation/v1)
+
+Wallpaper: (https://www.wallpaperup.com/)
 
 ## Recommended IDE Setup
 
