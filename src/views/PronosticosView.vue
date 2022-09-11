@@ -63,7 +63,7 @@ onMounted(async () => {
     <LoadingSpinner v-if="loading" />
     <div v-else>
       <div v-if="existeData">
-        <h3>Estado del tiempo para {{ region }}</h3>
+        <h3>Estado del tiempo para {{ climaActual.region }}</h3>
         <p class="descripcion">
           <strong>Region: </strong><span class="detalle">{{ climaActual.region }}</span>
         </p>
