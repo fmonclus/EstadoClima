@@ -12,13 +12,17 @@ const loading = ref(false);
 const existeData = ref(true);
 const datoBuscado = ref("");
 
-const region = ref("");
-const horario = ref("");
-const temperatura = ref("");
-const precipitaciones = ref("");
-const humedad = ref("");
-const viento = ref("");
-const comment = ref("");
+const climaActual = ref([
+  {
+    region: "",
+    horario: "",
+    temperatura: "",
+    precipitaciones: "",
+    humedad: "",
+    viento: "",
+    comment: ""
+  },
+]);
 
 function back() {
   router.push("/EstadoClima");
@@ -38,13 +42,13 @@ onMounted(async () => {
       existeData.value = false;
     } else {
       existeData.value = true;
-      region.value = data.region;
-      horario.value = data.currentConditions.dayhour;
-      temperatura.value = data.currentConditions.temp.c;
-      precipitaciones.value = data.currentConditions.precip;
-      humedad.value = data.currentConditions.humidity;
-      viento.value = data.currentConditions.wind.km;
-      comment.value = data.currentConditions.comment;
+      climaActual.value.region = data.region;
+      climaActual.value.horario = data.currentConditions.dayhour;
+      climaActual.value.temperatura = data.currentConditions.temp.c;
+      climaActual.value.precipitaciones = data.currentConditions.precip;
+      climaActual.value.humedad = data.currentConditions.humidity;
+      climaActual.value.viento = data.currentConditions.wind.km;
+      climaActual.value.comment = data.currentConditions.comment;
     }
   } catch (error) {
     console.log(error);
@@ -61,29 +65,29 @@ onMounted(async () => {
       <div v-if="existeData">
         <h3>Estado del tiempo para {{ region }}</h3>
         <p class="descripcion">
-          <strong>Region: </strong><span class="detalle">{{ region }}</span>
+          <strong>Region: </strong><span class="detalle">{{ climaActual.region }}</span>
         </p>
         <p class="descripcion">
-          <strong>Horario: </strong><span class="detalle">{{ horario }}</span>
+          <strong>Horario: </strong><span class="detalle">{{ climaActual.horario }}</span>
         </p>
         <p class="descripcion">
           <strong>Temperatura: </strong
-          ><span class="detalle">{{ temperatura }}°C</span>
+          ><span class="detalle">{{ climaActual.temperatura }}°C</span>
         </p>
         <p class="descripcion">
           <strong>Probalidad lluvias: </strong
-          ><span class="detalle">{{ precipitaciones }}</span>
+          ><span class="detalle">{{ climaActual.precipitaciones }}</span>
         </p>
         <p class="descripcion">
-          <strong>Humedad: </strong><span class="detalle">{{ humedad }}</span>
+          <strong>Humedad: </strong><span class="detalle">{{ climaActual.humedad }}</span>
         </p>
         <p class="descripcion">
           <strong>Viento: </strong
-          ><span class="detalle">{{ viento }} km/h</span>
+          ><span class="detalle">{{ climaActual.viento }} km/h</span>
         </p>
         <p class="descripcion">
           <strong>Comentarios: </strong
-          ><span class="detalle">{{ comment }}</span>
+          ><span class="detalle">{{ climaActual.comment }}</span>
         </p>
       </div>
       <div v-else>
