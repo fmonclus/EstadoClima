@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
+import Tarjeta from "../components/Tarjeta.vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 
 const route = useRoute();
@@ -64,38 +65,18 @@ onMounted(async () => {
   <div class="margen">
     <LoadingSpinner v-if="loading" />
     <div v-else>
-      <div v-if="existeData">
-        <h3>Estado del tiempo para "{{ route.params.lugar }}"</h3>
-        <img class="image-url" :src="climaActual.iconURL" alt="icono clima" />
-
-        <p class="descripcion">
-          <strong>Region: </strong
-          ><span class="detalle">{{ climaActual.region }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Horario pronóstico : </strong
-          ><span class="detalle">{{ climaActual.horario }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Temperatura: </strong
-          ><span class="detalle">{{ climaActual.temperatura }}°C</span>
-        </p>
-        <p class="descripcion">
-          <strong>Probalidad lluvias: </strong
-          ><span class="detalle">{{ climaActual.precipitaciones }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Humedad: </strong
-          ><span class="detalle">{{ climaActual.humedad }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Viento: </strong
-          ><span class="detalle">{{ climaActual.viento }} km/h</span>
-        </p>
-        <p class="descripcion">
-          <strong>Comentarios: </strong
-          ><span class="detalle">{{ climaActual.comment }}</span>
-        </p>
+      <div v-if="existeData">        
+        <tarjeta
+          :busqueda="route.params.lugar"
+          :region="climaActual.region"
+          :horario="climaActual.horario"
+          :temperatura="climaActual.temperatura"
+          :precipitaciones="climaActual.precipitaciones"
+          :viento="climaActual.viento"
+          :comment="climaActual.comment"
+          :iconURL="climaActual.iconURL"
+        >
+        </tarjeta>
       </div>
       <div v-else>
         <h3>No existen datos para su busqueda</h3>
@@ -114,25 +95,11 @@ h3 {
   color: #e8af2e;
   padding-bottom: 10px;
 }
-
-.actions {
-  padding-top: 8px;
-}
-
 .margen {
   padding-left: 15px;
 }
 
-.descripcion {
-  color: #f7e4b8;
-  font-size: large;
-}
-
-.detalle {
-  color: white;
-}
-
-.image-url {
-  padding-bottom: 10px;
+.actions {
+  padding-top: 8px;
 }
 </style>
