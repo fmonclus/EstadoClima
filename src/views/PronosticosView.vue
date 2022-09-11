@@ -67,7 +67,7 @@ onMounted(async () => {
     <LoadingSpinner v-if="loading" />
     <div v-else>
       <div v-if="existeData">
-        <h3>Estado del tiempo para {{ climaActual.region }}</h3>
+        <h3>Estado del tiempo para "{{ route.params.lugar }}"</h3>
         <img class="image-url" :src="climaActual.iconURL" alt="icono clima">
 
         <p class="descripcion">
@@ -99,7 +99,7 @@ onMounted(async () => {
       <div v-else>
         <h3>No existen detos para su busqueda</h3>
       </div>
-      <div style="padding-top: 20px">
+      <div class="actions">
         <button class="btn btn-secondary" @click="back">
           ← Volver a buscar
         </button>
@@ -113,6 +113,10 @@ onMounted(async () => {
 h3 {
   color: #e8af2e;
   padding-bottom: 10px;
+}
+
+.actions {
+  padding-top: 8px;
 }
 
 .margen {
