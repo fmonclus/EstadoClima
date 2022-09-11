@@ -20,7 +20,8 @@ const climaActual = ref([
     precipitaciones: "",
     humedad: "",
     viento: "",
-    comment: ""
+    comment: "",
+    iconURL: "" 
   },
 ]);
 
@@ -36,7 +37,7 @@ onMounted(async () => {
     );
 
     climaApi.value = data;
-    console.log(climaApi);
+    console.log(climaApi);    
 
     if (data.status === "fail") {
       existeData.value = false;
@@ -49,6 +50,7 @@ onMounted(async () => {
       climaActual.value.humedad = data.currentConditions.humidity;
       climaActual.value.viento = data.currentConditions.wind.km;
       climaActual.value.comment = data.currentConditions.comment;
+      climaActual.value.iconURL = data.currentConditions.iconURL;
     }
   } catch (error) {
     console.log(error);
@@ -56,6 +58,8 @@ onMounted(async () => {
     loading.value = false;
   }
 });
+
+
 </script>
 
 <template>
@@ -64,11 +68,13 @@ onMounted(async () => {
     <div v-else>
       <div v-if="existeData">
         <h3>Estado del tiempo para {{ climaActual.region }}</h3>
+        <img class="image-url" :src="climaActual.iconURL" alt="icono clima">
+
         <p class="descripcion">
           <strong>Region: </strong><span class="detalle">{{ climaActual.region }}</span>
         </p>
         <p class="descripcion">
-          <strong>Horario: </strong><span class="detalle">{{ climaActual.horario }}</span>
+          <strong>Horario pronóstico : </strong><span class="detalle">{{ climaActual.horario }}</span>
         </p>
         <p class="descripcion">
           <strong>Temperatura: </strong
@@ -103,6 +109,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+
 h3 {
   color: #e8af2e;
   padding-bottom: 10px;
@@ -119,5 +126,9 @@ h3 {
 
 .detalle {
   color: white;
+}
+
+.image-url {
+  padding-bottom: 10px;
 }
 </style>

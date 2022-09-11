@@ -53,7 +53,7 @@ import HelloWorld from "./components/Inicio.vue";
            <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li>
-            <router-link class="nav-link" to="/EstadoClima">Pronosticos</router-link>
+            <router-link class="nav-link" to="/EstadoClima">Pronósticos</router-link>        
           </li>          
         </ul>
       </div>
