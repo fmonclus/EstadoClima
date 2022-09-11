@@ -3,6 +3,7 @@ import { onMounted, ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
+import Tarjeta from "../components/Tarjeta.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -65,45 +66,27 @@ onMounted(async () => {
     <LoadingSpinner v-if="loading" />
     <div v-else>
       <div v-if="existeData">
-        <h3>Estado del tiempo para "{{ route.params.lugar }}"</h3>
-        <img class="image-url" :src="climaActual.iconURL" alt="icono clima" />
-
-        <p class="descripcion">
-          <strong>Region: </strong
-          ><span class="detalle">{{ climaActual.region }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Horario pronóstico : </strong
-          ><span class="detalle">{{ climaActual.horario }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Temperatura: </strong
-          ><span class="detalle">{{ climaActual.temperatura }}°C</span>
-        </p>
-        <p class="descripcion">
-          <strong>Probalidad lluvias: </strong
-          ><span class="detalle">{{ climaActual.precipitaciones }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Humedad: </strong
-          ><span class="detalle">{{ climaActual.humedad }}</span>
-        </p>
-        <p class="descripcion">
-          <strong>Viento: </strong
-          ><span class="detalle">{{ climaActual.viento }} km/h</span>
-        </p>
-        <p class="descripcion">
-          <strong>Comentarios: </strong
-          ><span class="detalle">{{ climaActual.comment }}</span>
-        </p>
-      </div>
-      <div v-else>
-        <h3>No existen datos para su busqueda</h3>
-      </div>
-      <div class="actions">
-        <button class="btn btn-secondary" @click="back">
-          ← Volver a buscar
-        </button>
+        <div v-if="existeData">
+          <tarjeta
+            :busqueda="route.params.lugar"
+            :region="climaActual.region"
+            :horario="climaActual.horario"
+            :temperatura="climaActual.temperatura"
+            :precipitaciones="climaActual.precipitaciones"
+            :viento="climaActual.viento"
+            :comment="climaActual.comment"
+            :iconURL="climaActual.iconURL"
+          >
+          </tarjeta>
+        </div>
+        <div v-else>
+          <h3>No existen datos para su busqueda</h3>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" @click="back">
+            ← Volver a buscar
+          </button>
+        </div>
       </div>
     </div>
   </div>

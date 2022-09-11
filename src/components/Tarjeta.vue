@@ -1,0 +1,73 @@
+<script setup>
+// props como objeto
+defineProps({
+  busqueda: String,
+  region: String,
+  horario: String,
+  temperatura: String,
+  precipitaciones: String,
+  viento: String,
+  comment: String,
+  iconURL: String,
+});
+</script>
+
+<template>
+  <h3>Estado del tiempo para "{{ busqueda }}"</h3>
+  <img class="image-url" :src="iconURL" alt="icono clima" />
+
+  <p class="descripcion">
+    <strong>Region: </strong
+    ><span class="detalle">{{ region }}</span>
+  </p>
+  <p class="descripcion">
+    <strong>Horario pronóstico : </strong
+    ><span class="detalle">{{ horario }}</span>
+  </p>
+  <p class="descripcion">
+    <strong>Temperatura: </strong
+    ><span class="detalle">{{ temperatura }}°C</span>
+  </p>
+  <p class="descripcion">
+    <strong>Probalidad lluvias: </strong
+    ><span class="detalle">{{ precipitaciones }}</span>
+  </p>
+  <p class="descripcion">
+    <strong>Humedad: </strong
+    ><span class="detalle">{{ humedad }}</span>
+  </p>
+  <p class="descripcion">
+    <strong>Viento: </strong
+    ><span class="detalle">{{ viento }} km/h</span>
+  </p>
+  <p class="descripcion">
+    <strong>Comentarios: </strong
+    ><span class="detalle">{{ comment }}</span>
+  </p>
+</template>
+
+<style scoped>
+h3 {
+  color: #e8af2e;
+  padding-bottom: 10px;
+}
+
+
+
+.margen {
+  padding-left: 15px;
+}
+
+.descripcion {
+  color: #f7e4b8;
+  font-size: large;
+}
+
+.detalle {
+  color: white;
+}
+
+.image-url {
+  padding-bottom: 10px;
+}
+</style>
