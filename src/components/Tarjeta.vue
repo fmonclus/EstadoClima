@@ -1,15 +1,20 @@
 <script setup>
-// props como objeto
+import { ref, computed } from "vue";
+
 defineProps({
   busqueda: String,
   region: String,
   horario: String,
-  temperatura: String,
+  temperatura: Number,
   precipitaciones: String,
-  viento: String,
+  humedad: String,
+  viento: Number,
   comment: String,
   iconURL: String,
 });
+
+const format = (date, locale) => new Intl.DateTimeFormat(locale).format(date);
+const date = ref(format(new Date(), "pt-BR"));
 </script>
 
 <template>
@@ -17,8 +22,10 @@ defineProps({
   <img class="image-url" :src="iconURL" alt="icono clima" />
 
   <p class="descripcion">
-    <strong>Region: </strong
-    ><span class="detalle">{{ region }}</span>
+    <strong>Region: </strong><span class="detalle">{{ region }}</span>
+  </p>
+  <p class="descripcion">
+    <strong>Fecha: </strong><span class="detalle">{{ date }}</span>
   </p>
   <p class="descripcion">
     <strong>Horario pronóstico : </strong
@@ -33,16 +40,13 @@ defineProps({
     ><span class="detalle">{{ precipitaciones }}</span>
   </p>
   <p class="descripcion">
-    <strong>Humedad: </strong
-    ><span class="detalle">{{ humedad }}</span>
+    <strong>Humedad: </strong><span class="detalle">{{ humedad }}</span>
   </p>
   <p class="descripcion">
-    <strong>Viento: </strong
-    ><span class="detalle">{{ viento }} km/h</span>
+    <strong>Viento: </strong><span class="detalle">{{ viento }} km/h</span>
   </p>
   <p class="descripcion">
-    <strong>Comentarios: </strong
-    ><span class="detalle">{{ comment }}</span>
+    <strong>Comentarios: </strong><span class="detalle">{{ comment }}</span>
   </p>
 </template>
 
@@ -51,8 +55,6 @@ h3 {
   color: #e8af2e;
   padding-bottom: 10px;
 }
-
-
 
 .margen {
   padding-left: 15px;

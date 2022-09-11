@@ -73,6 +73,7 @@ onMounted(async () => {
             :horario="climaActual.horario"
             :temperatura="climaActual.temperatura"
             :precipitaciones="climaActual.precipitaciones"
+            :humedad="climaActual.humedad"
             :viento="climaActual.viento"
             :comment="climaActual.comment"
             :iconURL="climaActual.iconURL"
