@@ -66,27 +66,26 @@ onMounted(async () => {
     <LoadingSpinner v-if="loading" />
     <div v-else>
       <div v-if="existeData">
-        <div v-if="existeData">
-          <tarjeta
-            :busqueda="route.params.lugar"
-            :region="climaActual.region"
-            :horario="climaActual.horario"
-            :temperatura="climaActual.temperatura"
-            :precipitaciones="climaActual.precipitaciones"
-            :viento="climaActual.viento"
-            :comment="climaActual.comment"
-            :iconURL="climaActual.iconURL"
-          >
-          </tarjeta>
-        </div>
-        <div v-else>
-          <h3>No existen datos para su busqueda</h3>
-        </div>
-        <div class="actions">
-          <button class="btn btn-secondary" @click="back">
-            ← Volver a buscar
-          </button>
-        </div>
+        <tarjeta
+          :busqueda="route.params.lugar"
+          :region="climaActual.region"
+          :horario="climaActual.horario"
+          :temperatura="climaActual.temperatura"
+          :precipitaciones="climaActual.precipitaciones"
+          :humedad="climaActual.humedad"
+          :viento="climaActual.viento"
+          :comment="climaActual.comment"
+          :iconURL="climaActual.iconURL"
+        >
+        </tarjeta>
+      </div>
+      <div v-else>
+        <h3>No existen datos para su busqueda</h3>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary" @click="back">
+          ← Volver a buscar
+        </button>
       </div>
     </div>
   </div>
