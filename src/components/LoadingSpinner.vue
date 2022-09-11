@@ -46,15 +46,15 @@ export default {
   data() {
     return {
       circles: [
-        { color: "#6F6F6F", radius: 0 },
-        { color: "#787878", radius: 0 },
-        { color: "#818181", radius: 0 },
-        { color: "#8A8A8A", radius: 0 },
-        { color: "#939393", radius: 0 },
-        { color: "#9C9C9C", radius: 0 },
-        { color: "#A5A5A5", radius: 0 },
-        { color: "#AEAEAE", radius: 0 },
-        { color: "#C0C0C0", radius: 0 },
+        { color: "#E3AC3C", radius: 0 },
+        { color: "#E5B147", radius: 0 },
+        { color: "#E6B552", radius: 0 },
+        { color: "#E8BA5D", radius: 0 },
+        { color: "#EABF69", radius: 0 },
+        { color: "#ECC474", radius: 0 },
+        { color: "#EDC980", radius: 0 },
+        { color: "#EFCE8C", radius: 0 },
+        { color: "#F1D498", radius: 0 },
       ],
       counter: 0,
       interval: null,
@@ -87,7 +87,7 @@ export default {
 .text-description {
   text-align: center;
   font-size: 1.8rem;
-  color: #d2d2d2;
+  color: #E3AC3C;
 }
 
 .center {
