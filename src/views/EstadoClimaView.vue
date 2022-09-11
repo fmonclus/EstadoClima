@@ -23,7 +23,7 @@ function buscar() {
 
   <input
     id="txtLugar"
-    placeholder="Pais, Ciudad, Localidad"
+    placeholder="Localidad, Provincia, País"
     class="form-control"
     v-model="value"
   />
