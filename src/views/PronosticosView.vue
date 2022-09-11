@@ -98,7 +98,7 @@ onMounted(async () => {
         </p>
       </div>
       <div v-else>
-        <h3>No existen detos para su busqueda</h3>
+        <h3>No existen datos para su busqueda</h3>
       </div>
       <div class="actions">
         <button class="btn btn-secondary" @click="back">
