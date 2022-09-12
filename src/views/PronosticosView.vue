@@ -30,9 +30,38 @@ function back() {
   router.push("/EstadoClima");
 }
 
+let favoritosItems = ref([]);
+let showFavoritos = ref(false);
+let favoritoExiste = ref(false);
+
+if (window.localStorage.getItem("FAVORITOS") !== null) {
+  favoritosItems.value = JSON.parse(window.localStorage.getItem("FAVORITOS"));
+}
+
+function addFavorito() {
+  showFavoritos.value = true;
+
+  if (
+    !favoritosItems.value.find(
+      (element) => element === climaActual.value.region
+    )
+  ) {
+    favoritosItems.value.push(climaActual.value.region);
+    window.localStorage.setItem(
+      "FAVORITOS",
+      JSON.stringify(favoritosItems.value)
+    );
+    console.log(JSON.parse(localStorage.getItem("FAVORITOS")));
+    favoritoExiste.value = false;
+  } else {
+    favoritoExiste.value = true;
+  }
+}
+
 onMounted(async () => {
   try {
     loading.value = true;
+
     const { data } = await axios.get(
       `https://weatherdbi.herokuapp.com/data/weather/${route.params.lugar}`
     );
@@ -65,6 +94,19 @@ onMounted(async () => {
   <div class="margen">
     <LoadingSpinner v-if="loading" />
     <div v-else>
+      <div v-if="showFavoritos">
+        <div v-if="favoritoExiste">
+          <div class="alert alert-danger" role="alert">
+            Esta ubicación ya existe en favoritos.
+          </div>
+        </div>
+        <div v-else>
+          <div class="alert alert-success" role="alert">
+            La ubicación se agrego a favoritos.
+          </div>
+        </div>
+      </div>
+
       <div v-if="existeData">
         <tarjeta
           :busqueda="route.params.lugar"
@@ -85,6 +127,15 @@ onMounted(async () => {
       <div class="actions">
         <button class="btn btn-secondary" @click="back">
           ← Volver a buscar
+        </button>
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          @click="addFavorito()"
+          :disabled="inicio === 0"
+        >
+          Agregar favorito
         </button>
       </div>
     </div>
