@@ -1,8 +1,6 @@
 # Estado del Clima
 
-Esta es una aplicacion para poner en practicas conceptos de Vue.JS
-
-Utilizando la API de weatherDB
+Esta es una aplicacion para poner en practicas conceptos de Vue.JS utilizando Router, Axios, LocalStorage
 
 DEMO: (https://estadoclima.netlify.app/)
 

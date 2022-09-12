@@ -92,6 +92,7 @@ onMounted(async () => {
 
 <template>
   <div class="margen">
+    <!-- muestra el loandig o el contenido -->
     <LoadingSpinner v-if="loading" />
     <div v-else>
       <div v-if="showFavoritos">
@@ -107,6 +108,7 @@ onMounted(async () => {
         </div>
       </div>
 
+      <!-- muestra la tarjeta del clima -->
       <div v-if="existeData">
         <tarjeta
           :busqueda="route.params.lugar"
@@ -124,6 +126,8 @@ onMounted(async () => {
       <div v-else>
         <h3>No existen datos para su busqueda</h3>
       </div>
+
+      <!-- botones de acciones -->
       <div class="actions">
         <button class="btn btn-secondary" @click="back">
           ← Volver a buscar

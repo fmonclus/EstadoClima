@@ -9,6 +9,7 @@ let active = false;
 let favoritosItems = ref([]);
 if (window.localStorage.getItem("FAVORITOS") !== null) {
   favoritosItems.value = JSON.parse(window.localStorage.getItem("FAVORITOS"));
+  favoritosItems.value = favoritosItems.value.sort();
   active = true;
 }
 
