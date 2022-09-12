@@ -22,13 +22,13 @@ const date = ref(format(new Date(), "pt-BR"));
   <img class="image-url" :src="iconURL" alt="icono clima" />
 
   <p class="descripcion">
-    <strong>Region: </strong><span class="detalle">{{ region }}</span>
+    <strong>Región: </strong><span class="detalle">{{ region }}</span>
   </p>
   <p class="descripcion">
-    <strong>Fecha: </strong><span class="detalle">{{ date }}</span>
+    <strong>Fecha Local: </strong><span class="detalle">{{ date }}</span>
   </p>
   <p class="descripcion">
-    <strong>Horario pronóstico : </strong
+    <strong>Último pronóstico : </strong
     ><span class="detalle">{{ horario }}</span>
   </p>
   <p class="descripcion">

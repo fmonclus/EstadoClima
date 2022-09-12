@@ -130,16 +130,16 @@ onMounted(async () => {
       <!-- botones de acciones -->
       <div class="actions">
         <button class="btn btn-secondary" @click="back">
-          ← Volver a buscar
+          <strong>← Buscar otro</strong>
         </button>
         <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
         <button
           type="button"
           class="btn btn-outline-primary"
-          @click="addFavorito()"
-          :disabled="inicio === 0"
+          alt="Agregar a favoritos"
+          @click="addFavorito()"          
         >
-          Agregar favorito
+          <i class="fa fa-solid fa-heart"></i>                    
         </button>
       </div>
     </div>
