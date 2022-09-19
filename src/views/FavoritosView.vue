@@ -7,8 +7,8 @@ const router = useRouter();
 let active = false;
 
 let favoritosItems = ref([]);
-if (window.localStorage.getItem("FAVORITOS") !== null) {
-  favoritosItems.value = JSON.parse(window.localStorage.getItem("FAVORITOS"));
+if (window.localStorage.getItem("PronosticosFav") !== null) {
+  favoritosItems.value = JSON.parse(window.localStorage.getItem("PronosticosFav"));
   favoritosItems.value = favoritosItems.value.sort();
   active = true;
 }

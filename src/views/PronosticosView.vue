@@ -34,8 +34,8 @@ let favoritosItems = ref([]);
 let showFavoritos = ref(false);
 let favoritoExiste = ref(false);
 
-if (window.localStorage.getItem("FAVORITOS") !== null) {
-  favoritosItems.value = JSON.parse(window.localStorage.getItem("FAVORITOS"));
+if (window.localStorage.getItem("PronosticosFav") !== null) {
+  favoritosItems.value = JSON.parse(window.localStorage.getItem("PronosticosFav"));
 }
 
 function addFavorito() {
@@ -47,11 +47,8 @@ function addFavorito() {
     )
   ) {
     favoritosItems.value.push(climaActual.value.region);
-    window.localStorage.setItem(
-      "FAVORITOS",
-      JSON.stringify(favoritosItems.value)
-    );
-    console.log(JSON.parse(localStorage.getItem("FAVORITOS")));
+    window.localStorage.setItem("PronosticosFav", JSON.stringify(favoritosItems.value));
+    console.log(JSON.parse(localStorage.getItem("PronosticosFav")));
     favoritoExiste.value = false;
   } else {
     favoritoExiste.value = true;
@@ -66,22 +63,28 @@ onMounted(async () => {
       `https://weatherdbi.herokuapp.com/data/weather/${route.params.lugar}`
     );
 
-    climaApi.value = data;
+    await axios
+      .get(
+        `https://weatherdbi.herokuapp.com/data/weather/${route.params.lugar}`
+      )
+      .then((response) => {
+        if (response.data.status != "fail") {
+          existeData.value = true;
+          climaApi.value = response.data;
+          climaActual.value.region = data.region;
+          climaActual.value.horario = data.currentConditions.dayhour;
+          climaActual.value.temperatura = data.currentConditions.temp.c;
+          climaActual.value.precipitaciones = data.currentConditions.precip;
+          climaActual.value.humedad = data.currentConditions.humidity;
+          climaActual.value.viento = data.currentConditions.wind.km;
+          climaActual.value.comment = data.currentConditions.comment;
+          climaActual.value.iconURL = data.currentConditions.iconURL;
+        } else {
+          existeData.value = false;
+        }
+      });
+    // climaApi.value = data;
     console.log(climaApi);
-
-    if (data.status === "fail") {
-      existeData.value = false;
-    } else {
-      existeData.value = true;
-      climaActual.value.region = data.region;
-      climaActual.value.horario = data.currentConditions.dayhour;
-      climaActual.value.temperatura = data.currentConditions.temp.c;
-      climaActual.value.precipitaciones = data.currentConditions.precip;
-      climaActual.value.humedad = data.currentConditions.humidity;
-      climaActual.value.viento = data.currentConditions.wind.km;
-      climaActual.value.comment = data.currentConditions.comment;
-      climaActual.value.iconURL = data.currentConditions.iconURL;
-    }
   } catch (error) {
     console.log(error);
   } finally {
@@ -134,12 +137,13 @@ onMounted(async () => {
         </button>
         <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
         <button
+          :disabled="!existeData"
           type="button"
           class="btn btn-outline-primary"
           alt="Agregar a favoritos"
-          @click="addFavorito()"          
+          @click="addFavorito()"
         >
-          <i class="fa fa-solid fa-heart"></i>                    
+          <i class="fa fa-solid fa-heart"></i>
         </button>
       </div>
     </div>

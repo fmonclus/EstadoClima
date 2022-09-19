@@ -15,25 +15,24 @@ function buscar() {
 
 <template>
   <div class="margen">
-<h3>Estado del clima</h3>
-  <h4>Conozca el estado actual del clima en cualquier parte del mundo</h4>
+    <h3>Estado del clima</h3>
+    <h4>Conozca el estado actual del clima en cualquier parte del mundo</h4>
 
-  <br />
+    <br />
 
-  <input
-    id="txtLugar"
-    placeholder="Localidad, Provincia, País"
-    class="form-control"
-    v-model="value"
-  />
+    <input
+      id="txtLugar"
+      placeholder="Localidad, Provincia, País"
+      class="form-control"
+      v-model="value"
+    />
 
-  <br />
+    <br />
 
-  <button type="submit" class="btn btn-block btn-dark" @click="buscar">
-    Buscar
-  </button>
+    <button type="submit" class="btn btn-block btn-dark" @click="buscar">
+      Buscar
+    </button>
   </div>
-  
 </template>
 
 <style scoped>
@@ -54,6 +53,6 @@ button {
   max-width: 350px;
 }
 .margen {
-    padding-left: 15px;
+  padding-left: 15px;
 }
 </style>
